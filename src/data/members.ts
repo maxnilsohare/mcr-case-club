@@ -88,6 +88,58 @@ export const memberProfiles: readonly MemberProfile[] = [
       { label: "Presentation flow", value: 85 }
     ],
     imageSrc: "/team/isobel-jeffrie@2x.jpeg"
+  },
+  {
+    slug: "veron-charles",
+    name: "Veron Charles",
+    archetype: "The Stabiliser",
+    primaryRole: "Analysis · Strategy",
+    course: "BA (Hons) Business Management",
+    summary:
+      "Veron is the kind of competitor who brings control to the room. Strong under pressure, clear in his thinking, and reliable when a team needs structure fast. He helps shape a case into something focused, logical, and presentation-ready.",
+    strengths: [
+      {
+        title: "Rapid Planner",
+        description: "Builds a plan quickly when time is tight.",
+        tag: "High-impact",
+        marker: "RP"
+      },
+      {
+        title: "Alignment Anchor",
+        description: "Keeps the team aligned and moving.",
+        tag: "Core strength",
+        marker: "AA"
+      },
+      {
+        title: "Recommendation Architect",
+        description: "Strong on introductions, conclusions, and recommendation logic.",
+        tag: "Execution",
+        marker: "RA"
+      },
+      {
+        title: "Pressure Calm",
+        description: "Brings calm and clarity when pressure rises.",
+        tag: "Team dynamic",
+        marker: "PC"
+      }
+    ],
+    competitions: [
+      { name: "TU Dublin Case Competition", photoMatch: ["tu-dublin-bootcamp"] },
+      { name: "COIL Competition", photoMatch: ["coil"] },
+      { name: "GRAILS Denmark Competition", photoMatch: ["grails", "denmark"] }
+    ],
+    compIdentityBestIn: "Structure, pacing, strategic clarity",
+    compIdentityTeamValue: "Raises the team’s floor and sharpens the final output.",
+    funFact: "First ever word: \"car\"",
+    stats: [
+      { label: "Structure", value: 92 },
+      { label: "Composure under pressure", value: 90 },
+      { label: "Strategy", value: 87 },
+      { label: "Team coordination", value: 88 },
+      { label: "Communication", value: 84 },
+      { label: "Execution logic", value: 89 }
+    ],
+    imageSrc: "/team/veron-charles@2x.jpeg"
   }
 ] as const;
 
