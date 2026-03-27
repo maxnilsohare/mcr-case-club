@@ -7,10 +7,23 @@ import { StaggerContainer, StaggerItem } from "@/components/motion";
 import { teamContent } from "@/content/team";
 
 export default function TeamPage() {
-  const president = teamContent.leadership.members.find((m) => m.role === "President");
-  const otherLeaders = teamContent.leadership.members.filter((m) => m.role !== "President");
-  /** Same portrait card for everyone; President listed first. */
-  const leadershipOrdered = president ? [president, ...otherLeaders] : teamContent.leadership.members;
+  const leadershipOrdered = [...teamContent.leadership.members].sort((a, b) => {
+    const yearFromMeta = (meta: string) => {
+      const m = meta.match(/year\s+(\d+)/i);
+      return m ? Number(m[1]) : -1;
+    };
+
+    const yearA = yearFromMeta(a.meta);
+    const yearB = yearFromMeta(b.meta);
+    if (yearA !== yearB) return yearB - yearA; // Year 2 before Year 1
+
+    // Within the same year: keep President first, then alphabetical.
+    const roleWeight = (role: string) => (role === "President" ? 0 : 1);
+    const rw = roleWeight(a.role) - roleWeight(b.role);
+    if (rw !== 0) return rw;
+
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <>

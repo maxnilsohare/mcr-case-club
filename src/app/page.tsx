@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CompanyLogoStrip } from "@/components/site/CompanyLogoStrip";
+import { CompetitionFootprint } from "@/components/site/CompetitionFootprint";
 import { CompetitionHighlights } from "@/components/site/CompetitionHighlights";
 import { HomeHero } from "@/components/site/HomeHero";
 import { MemberReflections } from "@/components/site/MemberReflections";
@@ -55,6 +56,14 @@ export default function HomePage() {
             </p>
           </div>
         </Reveal>
+      </Section>
+
+      <Section
+        title="Competition Footprint"
+        intro="From Manchester to the wider circuit — where we’ve competed, and where we’re heading next."
+        introClassName="max-w-3xl text-ink-700"
+      >
+        <CompetitionFootprint />
       </Section>
 
       <Section

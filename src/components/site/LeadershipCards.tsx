@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { TeamMember } from "@/components/site/TeamCard";
 import { CredentialGroups } from "@/components/site/team/credentials";
+import { getMemberSlugByName } from "@/data/members";
 import { cn } from "@/lib/cn";
 
 function hasCredentials(member: TeamMember) {
@@ -92,6 +93,8 @@ export function LeaderCard({ member }: { member: TeamMember }) {
   const creds = hasCredentials(member);
   const experience = member.experience ?? [];
   const competitions = member.competitions ?? [];
+  const slug = getMemberSlugByName(member.name);
+  const profileHref = slug ? `/team/${slug}` : null;
 
   return (
     <article
@@ -120,6 +123,16 @@ export function LeaderCard({ member }: { member: TeamMember }) {
       />
 
       <LinkedInIcon href={member.linkedinHref} className="right-4 top-4" />
+
+      {profileHref ? (
+        <Link
+          href={profileHref}
+          aria-label={`View profile — ${member.name}`}
+          className="absolute inset-0 z-20"
+        >
+          <span className="sr-only">View profile</span>
+        </Link>
+      ) : null}
 
       {/* Bottom read area: soft blend, not a heavy framed panel */}
       <div className="absolute inset-x-0 bottom-0 z-10 px-2.5 pb-2.5 pt-12 sm:px-3 sm:pb-3">

@@ -11,6 +11,8 @@ export type CompetitionHighlight = {
   id: string;
   competition: string;
   result: string;
+  /** Event location shown in cards */
+  location?: string;
   date: string;
   /** Featured = podium / standout; participation = steady presence */
   tier: CompetitionHighlightTier;
@@ -36,6 +38,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "roca-finalist",
     competition: "ROCA",
     result: "Finalist",
+    location: "Ottawa, Canada",
     date: "Oct. 2025",
     tier: "featured",
     featuredImageSrc: "/competitions/photos/roca-final.jpeg",
@@ -62,6 +65,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "roca-best-speaker",
     competition: "ROCA",
     result: "Best Speaker — Freya Lambert",
+    location: "Ottawa, Canada",
     date: "Oct. 2025",
     tier: "featured",
     featuredImageSrc: "/competitions/photos/roca-freya-lambert-best-speaker.jpeg",
@@ -78,6 +82,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "nibs",
     competition: "NIBS",
     result: "2nd Place",
+    location: "Toronto, Canada",
     date: "Feb. 2026",
     tier: "featured",
     featuredImageSrc: "/competitions/photos/nibs-2nd.jpeg",
@@ -116,9 +121,37 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     ]
   },
   {
+    id: "nibs-2025-spirited-team",
+    competition: "NIBS 2025",
+    result: "Most Spirited Team",
+    location: "Nanchang, China",
+    date: "Feb. 2025",
+    tier: "featured",
+    logoSrc: "/competitions/nibs.jpg",
+    featuredImageSrc: "/competitions/photos/nibs-2025-china-team-photo-2.jpeg",
+    hoverPhotos: [
+      {
+        src: "/competitions/photos/nibs-2025-china-team-photo-2.jpeg",
+        alt: "NIBS 2025 in Nanchang — team photo",
+        label: "NIBS 2025"
+      },
+      {
+        src: "/competitions/photos/nibs-2025-china-team-photo-3.jpeg",
+        alt: "NIBS 2025 in Nanchang — team photo",
+        label: "NIBS 2025"
+      },
+      {
+        src: "/competitions/photos/nibs-2025-nanchang-2.jpeg",
+        alt: "NIBS 2025 in Nanchang — Most Spirited Team trophy",
+        label: "NIBS 2025"
+      }
+    ]
+  },
+  {
     id: "international-marketing",
     competition: "International Business Week",
     result: "1st Place",
+    location: "Manchester, United Kingdom",
     date: "Nov. 2025",
     tier: "featured",
     logoSrc: "/competitions/marketing-week.png",
@@ -140,6 +173,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "bbu",
     competition: "BBU",
     result: "Participated",
+    location: "Cluj-Napoca, Romania",
     date: "Sep. 2025",
     tier: "participation",
     logoSrc: "/competitions/bbu.png",
@@ -170,6 +204,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "riccb",
     competition: "RICCB",
     result: "Participated",
+    location: "Rotterdam, The Netherlands",
     date: "Oct. 2025",
     tier: "participation",
     logoSrc: "/competitions/riccb.webp",
@@ -190,6 +225,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     id: "acc",
     competition: "ACC",
     result: "Participated",
+    location: "Amsterdam, The Netherlands",
     date: "Mar. 2026",
     tier: "participation",
     logoSrc: "/competitions/acc.png",
@@ -208,6 +244,32 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
         src: "/competitions/photos/acc-moment.jpeg",
         alt: "ACC competition",
         label: "ACC"
+      }
+    ]
+  },
+  {
+    id: "tu-dublin-bootcamp",
+    competition: "TU Dublin Bootcamp",
+    result: "Participated",
+    location: "Dublin, Ireland",
+    date: "2025",
+    tier: "participation",
+    logoSrc: "/competitions/tu-dublin-logo.png",
+    hoverPhotos: [
+      {
+        src: "/competitions/photos/tu-dublin-bootcamp-1.jpeg",
+        alt: "TU Dublin Bootcamp team",
+        label: "TU Dublin Bootcamp"
+      },
+      {
+        src: "/competitions/photos/tu-dublin-bootcamp-3.jpeg",
+        alt: "TU Dublin Bootcamp session",
+        label: "TU Dublin Bootcamp"
+      },
+      {
+        src: "/competitions/photos/tu-dublin-bootcamp-6.jpeg",
+        alt: "TU Dublin Bootcamp competition moment",
+        label: "TU Dublin Bootcamp"
       }
     ]
   }

@@ -12,6 +12,26 @@ export const teamContent = {
       "Accountable for cadence, quality, and the member experience. We keep the bar high and the room calm.",
     members: [
       {
+        name: "Isobel Jeffrie",
+        role: "Competitions",
+        meta: "BA (Hons) Business Management · Year 1",
+        bio:
+          "Supports competition preparation and member coordination. Student representative at Manchester Metropolitan University; steady on communication and follow-through.",
+        linkedinHref: "#",
+        photoSrc: "/team/isobel-jeffrie@2x.jpeg",
+        competitions: [{ name: "ACC", logoSrc: "/competitions/acc.png" }]
+      },
+      {
+        name: "Veron Charles",
+        role: "Competitions",
+        meta: "BA Business Management · Year 1",
+        bio:
+          "Supports competition participation and coordination. Student representative and university student; focused on teamwork, clear communication, and consistent preparation.",
+        linkedinHref: "#",
+        photoSrc: "/team/veron-charles@2x.jpeg",
+        competitions: [{ name: "ACC", logoSrc: "/competitions/acc.png" }]
+      },
+      {
         name: "Max O'Hare",
         role: "President",
         meta: "Banking & Finance · Year 2",

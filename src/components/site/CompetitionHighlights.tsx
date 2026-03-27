@@ -186,13 +186,16 @@ function LogoMark({ item, size = "sm" }: { item: CompetitionHighlight; size?: "s
   );
 }
 
-/** Standout results only — orphan last row fills the row (Participation never spans; three cards stay one row at lg) */
+/** Standout results only — only span for true lg orphan (4, 7, 10, ... items). */
 function featuredGridSpanClass(index: number, total: number) {
   if (index !== total - 1) return "";
-  return cn(
-    total % 2 === 1 && "sm:col-span-2",
-    total % 3 === 1 && "lg:col-span-3"
-  );
+  return cn(total % 3 === 1 && "lg:col-span-6");
+}
+
+/** Center an orphan pair on lg by starting the first card at grid column 2 (6-col grid, cards span 2). */
+function orphanPairStartClass(index: number, total: number) {
+  if (total % 3 !== 2) return "";
+  return index === total - 2 ? "lg:col-start-2" : "";
 }
 
 /** Last item is alone on its row in the lg 3-column grid — span full width and use a wide collage */
@@ -237,6 +240,11 @@ function HighlightCollageCard({
           <p className="mt-0.5 text-[0.93rem] font-medium leading-snug text-ink-950 sm:text-sm">
             {item.result}
           </p>
+          {item.location ? (
+            <p className="mt-0.5 text-[0.72rem] leading-snug text-ink-600 sm:text-[0.75rem]">
+              {item.location}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -284,14 +292,18 @@ export function CompetitionHighlights({ items }: { items: readonly CompetitionHi
             Standout results
           </p>
           <StaggerContainer
-            className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3"
+            className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-6"
             stagger={0.06}
             delayChildren={0.02}
           >
             {featured.map((item, index) => (
               <StaggerItem
                 key={item.id}
-                className={cn("min-w-0 self-start", featuredGridSpanClass(index, featured.length))}
+                className={cn(
+                  "min-w-0 self-start lg:col-span-2",
+                  featuredGridSpanClass(index, featured.length),
+                  orphanPairStartClass(index, featured.length)
+                )}
               >
                 <HighlightCollageCard
                   item={item}
@@ -310,12 +322,18 @@ export function CompetitionHighlights({ items }: { items: readonly CompetitionHi
               Participation
             </p>
             <StaggerContainer
-              className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3"
+              className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-6"
               stagger={0.06}
               delayChildren={0.02}
             >
-              {participation.map((item) => (
-                <StaggerItem key={item.id} className="min-w-0 self-start">
+              {participation.map((item, index) => (
+                <StaggerItem
+                  key={item.id}
+                  className={cn(
+                    "min-w-0 self-start lg:col-span-2",
+                    orphanPairStartClass(index, participation.length)
+                  )}
+                >
                   <HighlightCollageCard item={item} />
                 </StaggerItem>
               ))}

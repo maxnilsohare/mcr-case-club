@@ -71,6 +71,13 @@ function stemToAlt(stem: string): string {
 
 export type CompetitionPhotoFile = { src: string; alt: string };
 
+function teamPhotoRank(photo: CompetitionPhotoFile): number {
+  const src = photo.src.toLowerCase();
+  const alt = photo.alt.toLowerCase();
+  const teamLike = /(team|cohort)/;
+  return teamLike.test(src) || teamLike.test(alt) ? 0 : 1;
+}
+
 /**
  * Every competition photo in **either**:
  * - `public/competitions/photos/` (served as static `/competitions/photos/…`), or
@@ -110,7 +117,13 @@ export function getCompetitionPhotos(): CompetitionPhotoFile[] {
     }
 
     return [...merged.entries()]
-      .sort((a, b) => a[0].localeCompare(b[0]))
+      .sort((a, b) => {
+        const pa = a[1];
+        const pb = b[1];
+        const rank = teamPhotoRank(pa) - teamPhotoRank(pb);
+        if (rank !== 0) return rank;
+        return a[0].localeCompare(b[0]);
+      })
       .map(([, v]) => v);
   } catch (e) {
     console.error("[getCompetitionPhotos] Failed to read competition photo folders:", e);

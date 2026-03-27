@@ -22,14 +22,30 @@ const MAPPING_PATH = path.join(root, "src", "lib", "competition-photo-mapping.js
 
 const IMAGE_EXT = /\.(png|jpe?g|webp|gif)$/i;
 
-function slugifyFile(filename) {
-  const ext = path.extname(filename).toLowerCase();
-  const base = path.basename(filename, path.extname(filename));
+function slugifyFile(relativePath) {
+  const normalized = relativePath.replaceAll("\\", "/");
+  const ext = path.extname(normalized).toLowerCase();
+  const base = normalized.slice(0, normalized.length - ext.length);
   const slug = base
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
   return `${slug}${ext}`;
+}
+
+function walkImages(dir, rootDir = dir) {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith(".")) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      out.push(...walkImages(full, rootDir));
+      continue;
+    }
+    if (!entry.isFile() || !IMAGE_EXT.test(entry.name)) continue;
+    out.push(path.relative(rootDir, full).replaceAll("\\", "/"));
+  }
+  return out;
 }
 
 function loadRename() {
@@ -52,19 +68,20 @@ function main() {
 
   fs.mkdirSync(DEST, { recursive: true });
 
-  const files = fs.readdirSync(SOURCE).filter((f) => IMAGE_EXT.test(f));
+  const files = walkImages(SOURCE);
   let n = 0;
 
-  for (const file of files) {
-    const destName = RENAME[file] ?? slugifyFile(file);
-    const from = path.join(SOURCE, file);
+  for (const relativeFile of files) {
+    const base = path.basename(relativeFile);
+    const destName = RENAME[relativeFile] ?? RENAME[base] ?? slugifyFile(relativeFile);
+    const from = path.join(SOURCE, relativeFile);
     const to = path.join(DEST, destName);
     fs.copyFileSync(from, to);
     n++;
-    if (destName !== file) {
-      console.log(`  ${file} → ${destName}`);
+    if (destName !== relativeFile) {
+      console.log(`  ${relativeFile} → ${destName}`);
     } else {
-      console.log(`  ${file}`);
+      console.log(`  ${relativeFile}`);
     }
   }
 
