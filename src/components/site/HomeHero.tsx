@@ -1,0 +1,153 @@
+"use client";
+
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { ButtonLink } from "@/components/ui/Button";
+import { HeroAmbientBackground } from "@/components/site/HeroAmbientBackground";
+import { HeroArchiveMarquee, type HeroMarqueeImage } from "@/components/site/HeroArchiveMarquee";
+import {
+  easePremium,
+  heroStagger,
+  heroVisualDelay,
+  motionDuration
+} from "@/components/motion/presets";
+
+export type HomeHeroProofItem = { text: string };
+
+export type HomeHeroMarqueeImage = HeroMarqueeImage;
+
+export function HomeHero({
+  eyebrow,
+  title,
+  subtitle,
+  primaryCta,
+  secondaryCta,
+  proofItems,
+  marqueeImages
+}: {
+  eyebrow?: string;
+  title: string;
+  subtitle: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  proofItems: readonly HomeHeroProofItem[];
+  marqueeImages: readonly HomeHeroMarqueeImage[];
+}) {
+  const reduce = useReducedMotion();
+  const reduced = Boolean(reduce);
+
+  const leftContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : heroStagger,
+        delayChildren: 0
+      }
+    }
+  };
+
+  const heroLine: Variants = {
+    hidden: reduced
+      ? { opacity: 1, y: 0 }
+      : { opacity: 1, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: motionDuration.hero, ease: easePremium }
+    }
+  };
+
+  return (
+    <section className="relative overflow-hidden border-b border-ink-200/70 bg-paper-100">
+      <HeroAmbientBackground reducedMotion={reduced} />
+
+      <motion.div
+        className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:items-center xl:gap-14"
+        initial={false}
+        animate="visible"
+      >
+        <motion.div
+          className="lg:col-span-5"
+          variants={leftContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          {eyebrow ? (
+            <motion.div variants={heroLine} className="mb-5">
+              <span className="eyebrow inline-block rounded-full border border-ink-200/90 bg-white/90 px-3.5 py-1.5 text-ink-700 shadow-[0_1px_0_rgba(15,23,42,0.04)] transition-[box-shadow,border-color] duration-300 ease-out hover:border-ink-300/90 hover:shadow-[0_4px_20px_rgba(20,26,34,0.06)]">
+                {eyebrow}
+              </span>
+            </motion.div>
+          ) : null}
+          <motion.h1
+            variants={heroLine}
+            className="heading font-serif text-balance text-[2.35rem] font-semibold leading-[1.05] tracking-tight text-ink-950 sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem]"
+          >
+            {title}
+          </motion.h1>
+          <motion.p
+            variants={heroLine}
+            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-800 sm:text-lg"
+          >
+            {subtitle}
+          </motion.p>
+          {primaryCta || secondaryCta ? (
+            <motion.div
+              variants={heroLine}
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+            >
+              {primaryCta ? (
+                <ButtonLink href={primaryCta.href} variant="primary" size="md">
+                  {primaryCta.label}
+                </ButtonLink>
+              ) : null}
+              {secondaryCta ? (
+                <ButtonLink href={secondaryCta.href} variant="secondary" size="md">
+                  {secondaryCta.label}
+                </ButtonLink>
+              ) : null}
+            </motion.div>
+          ) : null}
+          {proofItems.length > 0 ? (
+            <motion.div
+              variants={heroLine}
+              className="mt-8 border-t border-ink-200/80 pt-6"
+            >
+              <p className="mb-2.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-500">
+                Recent momentum
+              </p>
+              <p className="text-sm leading-relaxed text-ink-800">
+                {proofItems.map((p, i) => (
+                  <span key={p.text}>
+                    {i > 0 ? <span className="mx-2.5 text-ink-300">·</span> : null}
+                    <span className="font-medium">{p.text}</span>
+                  </span>
+                ))}
+              </p>
+            </motion.div>
+          ) : null}
+        </motion.div>
+
+        <motion.div
+          className="relative min-h-0 lg:col-span-7"
+          initial={
+            reduced
+              ? false
+              : {
+                  opacity: 1,
+                  y: 22,
+                  scale: 0.988
+                }
+          }
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: reduced ? 0 : motionDuration.hero,
+            delay: reduced ? 0 : heroVisualDelay,
+            ease: easePremium
+          }}
+        >
+          <HeroArchiveMarquee images={marqueeImages} reducedMotion={reduced} />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
