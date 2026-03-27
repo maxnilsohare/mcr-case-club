@@ -86,7 +86,7 @@ export function HomeHero({
           </motion.h1>
           <motion.p
             variants={heroLine}
-            className="mt-4 max-w-xl text-pretty text-[0.98rem] leading-relaxed text-ink-800 sm:mt-5 sm:text-lg"
+            className="mt-4 max-w-full pr-1 text-pretty text-[0.98rem] leading-relaxed text-ink-800 [overflow-wrap:anywhere] sm:mt-5 sm:max-w-xl sm:pr-0 sm:text-lg"
           >
             {subtitle}
           </motion.p>
