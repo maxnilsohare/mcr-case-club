@@ -12,7 +12,7 @@ export function Main({ children }: { children: React.ReactNode }) {
 
   return (
     <MotionConfig reducedMotion="user">
-      <main key={pathname} className="pt-16">
+      <main key={pathname} className="pt-14 sm:pt-16">
         {children}
       </main>
     </MotionConfig>

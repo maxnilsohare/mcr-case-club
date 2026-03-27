@@ -28,8 +28,8 @@ export function Section({
         className
       )}
     >
-      <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-        <StaggerContainer className="mb-10 max-w-2xl" stagger={0.06} delayChildren={0.02}>
+      <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-20">
+        <StaggerContainer className="mb-7 max-w-2xl sm:mb-10" stagger={0.06} delayChildren={0.02}>
           {eyebrow ? (
             <StaggerItem>
               <p className="eyebrow mb-3 text-ink-600">{eyebrow}</p>
@@ -38,7 +38,7 @@ export function Section({
           <StaggerItem>
             <h2
               className={cn(
-                "heading text-balance text-2xl font-semibold sm:text-3xl",
+                "heading text-balance text-[1.75rem] font-semibold leading-tight sm:text-3xl",
                 titleClassName
               )}
             >
@@ -49,7 +49,7 @@ export function Section({
             <StaggerItem>
               <p
                 className={cn(
-                  "mt-3 text-pretty text-base leading-relaxed text-ink-800",
+                  "mt-2.5 text-pretty text-[0.98rem] leading-relaxed text-ink-800 sm:mt-3 sm:text-base",
                   introClassName
                 )}
               >

@@ -222,8 +222,8 @@ function HighlightCollageCard({
       };
 
   return (
-    <article className="group/part relative z-0 flex cursor-default flex-col overflow-hidden rounded-xl border border-ink-200/60 bg-white shadow-[0_1px_0_rgba(15,23,42,0.03)] transition-[box-shadow,border-color,transform,z-index] duration-300 ease-out hover:z-20 hover:scale-[1.03] hover:border-ink-300/85 hover:shadow-[0_12px_36px_rgba(20,26,34,0.11)] motion-reduce:transition-none motion-reduce:hover:scale-100">
-      <div className="flex items-center gap-3 px-3.5 py-3 sm:gap-4 sm:px-4 sm:py-3.5">
+    <article className="group/part relative z-0 flex h-fit cursor-default flex-col overflow-hidden rounded-xl border border-ink-200/60 bg-white shadow-[0_1px_0_rgba(15,23,42,0.03)] transition-[box-shadow,border-color,transform,z-index] duration-300 ease-out hover:z-20 hover:scale-[1.01] hover:border-ink-300/85 hover:shadow-[0_10px_28px_rgba(20,26,34,0.09)] motion-reduce:transition-none motion-reduce:hover:scale-100">
+      <div className="flex items-center gap-2.5 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3.5">
         <LogoMark item={item} size="sm" />
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline justify-between gap-2">
@@ -234,7 +234,9 @@ function HighlightCollageCard({
               {item.date}
             </p>
           </div>
-          <p className="mt-0.5 text-sm font-medium leading-snug text-ink-950">{item.result}</p>
+          <p className="mt-0.5 text-[0.93rem] font-medium leading-snug text-ink-950 sm:text-sm">
+            {item.result}
+          </p>
         </div>
       </div>
 
@@ -275,19 +277,22 @@ export function CompetitionHighlights({ items }: { items: readonly CompetitionHi
   const participation = items.filter((i) => i.tier === "participation");
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8 sm:space-y-12">
       {featured.length > 0 ? (
         <Reveal variant="fadeUp" className="block">
-          <p className="mb-4 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-500">
+          <p className="mb-3 text-[0.63rem] font-medium uppercase tracking-[0.16em] text-ink-500 sm:mb-4">
             Standout results
           </p>
           <StaggerContainer
-            className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3"
             stagger={0.06}
             delayChildren={0.02}
           >
             {featured.map((item, index) => (
-              <StaggerItem key={item.id} className={cn("min-w-0", featuredGridSpanClass(index, featured.length))}>
+              <StaggerItem
+                key={item.id}
+                className={cn("min-w-0 self-start", featuredGridSpanClass(index, featured.length))}
+              >
                 <HighlightCollageCard
                   item={item}
                   wideLayout={itemUsesWideCollage(index, featured.length)}
@@ -300,17 +305,17 @@ export function CompetitionHighlights({ items }: { items: readonly CompetitionHi
 
       {participation.length > 0 ? (
         <Reveal variant="fadeUp" className="block" delay={0.04}>
-          <div className="border-t border-ink-200/70 pt-10">
-            <p className="mb-4 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-500">
+          <div className="border-t border-ink-200/70 pt-7 sm:pt-10">
+            <p className="mb-3 text-[0.63rem] font-medium uppercase tracking-[0.16em] text-ink-500 sm:mb-4">
               Participation
             </p>
             <StaggerContainer
-              className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3"
               stagger={0.06}
               delayChildren={0.02}
             >
               {participation.map((item) => (
-                <StaggerItem key={item.id} className="min-w-0">
+                <StaggerItem key={item.id} className="min-w-0 self-start">
                   <HighlightCollageCard item={item} />
                 </StaggerItem>
               ))}

@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full border px-4 font-medium tracking-tight transition-[color,background-color,border-color,transform,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 disabled:pointer-events-none disabled:opacity-60 motion-reduce:transition-colors hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100";
+  "relative inline-flex items-center justify-center gap-2 rounded-full border px-4 font-medium leading-none tracking-tight text-center whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 disabled:pointer-events-none disabled:opacity-60 motion-reduce:transition-colors hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100";
 
 const variantClasses: Record<Variant, string> = {
   primary:
@@ -34,7 +34,11 @@ export function Button({
     <button
       className={cn(base, variantClasses[variant], sizeClasses[size], className)}
       {...props}
-    />
+    >
+      <span className="relative z-[1] inline-flex items-center justify-center">
+        {props.children}
+      </span>
+    </button>
   );
 }
 
@@ -57,7 +61,7 @@ export function ButtonLink({
       className={cn(base, variantClasses[variant], sizeClasses[size], className)}
       {...props}
     >
-      {children}
+      <span className="relative z-[1] inline-flex items-center justify-center">{children}</span>
     </Link>
   );
 }

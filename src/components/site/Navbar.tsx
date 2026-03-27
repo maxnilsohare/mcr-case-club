@@ -39,14 +39,24 @@ export function Navbar() {
         isScrolled ? "shadow-hairline" : ""
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label={siteConfig.name}>
-          <span className="relative h-9 w-[150px] sm:w-[180px]">
+          <span className="relative h-8 w-8 sm:hidden">
+            <Image
+              src="/mcc-square-mark.png"
+              alt={siteConfig.name}
+              fill
+              sizes="32px"
+              className="object-contain"
+              priority
+            />
+          </span>
+          <span className="relative hidden h-9 w-[180px] sm:block">
             <Image
               src="/brand/logo.png"
               alt={siteConfig.name}
               fill
-              sizes="(min-width: 640px) 180px, 150px"
+              sizes="180px"
               className="object-contain object-left"
               priority
             />
@@ -81,7 +91,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="md:hidden inline-flex h-10 items-center justify-center rounded-full border border-ink-200 bg-white px-3 text-sm font-medium tracking-tight text-ink-900 hover:bg-paper-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100"
+          className="md:hidden inline-flex h-9 items-center justify-center rounded-full border border-ink-200 bg-white px-3 text-sm font-medium tracking-tight text-ink-900 hover:bg-paper-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100"
           aria-label="Open menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}

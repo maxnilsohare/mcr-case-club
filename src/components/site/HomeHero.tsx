@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ButtonLink } from "@/components/ui/Button";
 import { HeroAmbientBackground } from "@/components/site/HeroAmbientBackground";
 import { HeroArchiveMarquee, type HeroMarqueeImage } from "@/components/site/HeroArchiveMarquee";
 import {
@@ -61,7 +61,7 @@ export function HomeHero({
       <HeroAmbientBackground reducedMotion={reduced} />
 
       <motion.div
-        className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:items-center xl:gap-14"
+        className="relative mx-auto grid w-full max-w-7xl gap-9 px-4 py-10 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:items-center xl:gap-14"
         initial={false}
         animate="visible"
       >
@@ -80,42 +80,52 @@ export function HomeHero({
           ) : null}
           <motion.h1
             variants={heroLine}
-            className="heading font-serif text-balance text-[2.35rem] font-semibold leading-[1.05] tracking-tight text-ink-950 sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem]"
+            className="heading font-serif text-balance text-[2.05rem] font-semibold leading-[1.08] tracking-tight text-ink-950 sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem]"
           >
             {title}
           </motion.h1>
           <motion.p
             variants={heroLine}
-            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-ink-800 sm:text-lg"
+            className="mt-4 max-w-xl text-pretty text-[0.98rem] leading-relaxed text-ink-800 sm:mt-5 sm:text-lg"
           >
             {subtitle}
           </motion.p>
           {primaryCta || secondaryCta ? (
             <motion.div
               variants={heroLine}
-              className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+              className="mt-6 flex flex-wrap items-center gap-2.5 sm:mt-8 sm:gap-3"
             >
               {primaryCta ? (
-                <ButtonLink href={primaryCta.href} variant="primary" size="md">
-                  {primaryCta.label}
-                </ButtonLink>
+                <Link
+                  href={primaryCta.href}
+                  className="relative inline-flex h-10 min-w-[7.75rem] items-center justify-center rounded-full border border-accent-800 bg-accent-800 px-4 text-sm font-semibold leading-none tracking-tight text-white shadow-[0_1px_0_rgba(15,23,42,0.08)] transition-[color,background-color,border-color,transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:border-accent-900 hover:bg-accent-900 hover:shadow-[0_6px_20px_rgba(21,74,65,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 active:translate-y-0 active:scale-[0.99] motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 sm:h-11 sm:min-w-[8.5rem] sm:px-5"
+                >
+                  <span className="relative z-[1] inline-flex items-center justify-center">
+                    {primaryCta.label}
+                  </span>
+                </Link>
               ) : null}
               {secondaryCta ? (
-                <ButtonLink href={secondaryCta.href} variant="secondary" size="md">
-                  {secondaryCta.label}
-                </ButtonLink>
+                <Link
+                  href={secondaryCta.href}
+                  className="relative inline-flex h-10 min-w-[7.75rem] items-center justify-center rounded-full border border-ink-300 bg-white px-4 text-sm font-semibold leading-none tracking-tight text-ink-950 shadow-[0_1px_0_rgba(15,23,42,0.04)] transition-[color,background-color,border-color,transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:border-ink-400 hover:bg-paper-200 hover:shadow-[0_4px_16px_rgba(20,26,34,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 active:translate-y-0 active:scale-[0.99] motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 sm:h-11 sm:min-w-[8.5rem] sm:px-5"
+                >
+                  <span className="relative z-[1] inline-flex items-center justify-center">
+                    {secondaryCta.label}
+                  </span>
+                </Link>
               ) : null}
             </motion.div>
           ) : null}
           {proofItems.length > 0 ? (
             <motion.div
               variants={heroLine}
-              className="mt-8 border-t border-ink-200/80 pt-6"
+              className="mt-7 border-t border-ink-200/80 pt-5 sm:mt-8 sm:pt-6"
             >
               <p className="mb-2.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-500">
                 Recent momentum
               </p>
-              <p className="text-sm leading-relaxed text-ink-800">
+              <p className="flex flex-wrap gap-y-1.5 text-sm leading-relaxed text-ink-800">
                 {proofItems.map((p, i) => (
                   <span key={p.text}>
                     {i > 0 ? <span className="mx-2.5 text-ink-300">·</span> : null}
