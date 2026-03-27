@@ -41,22 +41,12 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label={siteConfig.name}>
-          <span className="relative h-8 w-8 sm:hidden">
-            <Image
-              src="/mcc-square-mark.png"
-              alt={siteConfig.name}
-              fill
-              sizes="32px"
-              className="object-contain"
-              priority
-            />
-          </span>
-          <span className="relative hidden h-9 w-[180px] sm:block">
+          <span className="relative h-9 w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px]">
             <Image
               src="/brand/logo.png"
               alt={siteConfig.name}
               fill
-              sizes="180px"
+              sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, (min-width: 640px) 240px, 200px"
               className="object-contain object-left"
               priority
             />
