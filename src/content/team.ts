@@ -142,6 +142,15 @@ export const teamContent = {
       "External perspective on practice—experience-led guidance without diluting the club’s standards.",
     members: [
       {
+        name: "Dina Litsiou",
+        role: "Advisor",
+        meta: "Senior Lecturer · Manchester Metropolitan University",
+        bio:
+          "Senior Lecturer at Manchester Metropolitan University. Supports the club with academic perspective and structured feedback on case practice.",
+        linkedinHref: "#",
+        photoSrc: "/team/dina-litsiou@2x.png"
+      },
+      {
         name: "Mark Crowder",
         role: "Advisor",
         meta: "Reader (Associate Professor) · Manchester Metropolitan University",
