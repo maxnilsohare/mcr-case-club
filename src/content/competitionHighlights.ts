@@ -81,7 +81,7 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
   {
     id: "nibs",
     competition: "NIBS",
-    result: "2nd Place",
+    result: "Silver Medal",
     location: "Toronto, Canada",
     date: "Feb. 2026",
     tier: "featured",
@@ -90,12 +90,12 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
     hoverPhotos: [
       {
         src: "/competitions/photos/nibs-2nd.jpeg",
-        alt: "NIBS competition — 2nd place",
+        alt: "NIBS competition — Silver Medal",
         label: "NIBS"
       },
       {
         src: "/competitions/photos/team-nancy-jonny-max-2nd.jpeg",
-        alt: "Team celebrating second place",
+        alt: "Team celebrating Silver Medal",
         label: "NIBS"
       },
       {
@@ -149,23 +149,50 @@ export const competitionHighlights: readonly CompetitionHighlight[] = [
   },
   {
     id: "international-marketing",
-    competition: "International Business Week",
-    result: "1st Place",
-    location: "Manchester, United Kingdom",
-    date: "Nov. 2025",
+    competition: "IBM",
+    result: "Gold Medal",
+    location: "Kolding, Denmark",
+    date: "April 2025",
     tier: "featured",
     logoSrc: "/competitions/marketing-week.png",
     featuredImageSrc: "/competitions/photos/international-marketing-week-winner.jpeg",
     hoverPhotos: [
       {
         src: "/competitions/photos/international-marketing-week-winner.jpeg",
-        alt: "International Business Week — winner",
-        label: "International Business Week"
+        alt: "IBM — Gold Medal",
+        label: "IBM"
       },
       {
         src: "/competitions/photos/international-marketing-week-winners.jpeg",
-        alt: "International Business Week — team",
-        label: "International Business Week"
+        alt: "IBM — team",
+        label: "IBM"
+      }
+    ]
+  },
+  {
+    id: "emcup-amsterdam-2026",
+    competition: "EM Cup",
+    result: "Bronze Medal",
+    location: "Amsterdam, The Netherlands",
+    date: "Feb. 2026",
+    tier: "featured",
+    logoAbbr: "EM",
+    featuredImageSrc: "/competitions/photos/emcup-2026-amsterdam-1.png",
+    hoverPhotos: [
+      {
+        src: "/competitions/photos/emcup-2026-amsterdam-1.png",
+        alt: "EM Cup Amsterdam — team celebrating Bronze Medal",
+        label: "EM Cup"
+      },
+      {
+        src: "/competitions/photos/emcup-2026-amsterdam-2.png",
+        alt: "EM Cup 2026 — team with Bronze Medal recognition",
+        label: "EM Cup"
+      },
+      {
+        src: "/competitions/photos/emcup-2026-amsterdam-3.png",
+        alt: "EM Cup — awards stage, Amsterdam",
+        label: "EM Cup"
       }
     ]
   },

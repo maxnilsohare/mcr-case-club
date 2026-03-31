@@ -29,7 +29,10 @@ function PhotoLayer({ member, sizes }: { member: TeamMember; sizes: string }) {
           fill
           sizes={sizes}
           quality={90}
-          className="object-cover object-[center_32%]"
+          className={cn(
+            "object-cover",
+            member.photoCoverClassName ?? "object-[center_32%]"
+          )}
         />
       ) : (
         <InitialsBackdrop initials={initials} />

@@ -10,6 +10,8 @@ export type TeamMember = {
   bio: string;
   linkedinHref: string;
   photoSrc?: string;
+  /** Leadership card only: overrides default `object-cover` focal point / scale for portrait crops */
+  photoCoverClassName?: string;
   competitions?: { name: string; logoSrc: string }[];
   experience?: { name: string; logoSrc: string }[];
 };

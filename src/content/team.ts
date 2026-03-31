@@ -19,7 +19,10 @@ export const teamContent = {
           "Supports competition preparation and member coordination. Student representative at Manchester Metropolitan University; steady on communication and follow-through.",
         linkedinHref: "#",
         photoSrc: "/team/isobel-jeffrie@2x.jpeg",
-        competitions: [{ name: "ACC", logoSrc: "/competitions/acc.png" }]
+        competitions: [
+          { name: "ACC", logoSrc: "/competitions/acc.png" },
+          { name: "TU Dublin", logoSrc: "/competitions/tu-dublin-logo.png" }
+        ]
       },
       {
         name: "Veron Charles",
@@ -29,7 +32,10 @@ export const teamContent = {
           "Supports competition participation and coordination. Student representative and university student; focused on teamwork, clear communication, and consistent preparation.",
         linkedinHref: "#",
         photoSrc: "/team/veron-charles@2x.jpeg",
-        competitions: [{ name: "ACC", logoSrc: "/competitions/acc.png" }]
+        competitions: [
+          { name: "International Business Week", logoSrc: "/competitions/marketing-week.png" },
+          { name: "TU Dublin", logoSrc: "/competitions/tu-dublin-logo.png" }
+        ]
       },
       {
         name: "Max O'Hare",
@@ -37,8 +43,8 @@ export const teamContent = {
         meta: "Banking & Finance · Year 2",
         bio:
           "Leads the club’s direction and standards. Focused on building a calm, serious practice environment—and turning good preparation into consistent performance.",
-        linkedinHref: "#",
-        photoSrc: "/team/max-ohare@2x.jpeg",
+        linkedinHref: "https://www.linkedin.com/in/max-o-hare-8675",
+        photoSrc: "/team/max-ohare@2x.png",
         experience: [
           { name: "Houlihan Lokey", logoSrc: "/companies/houlihan-lokey.jpg" }
         ],
@@ -54,9 +60,9 @@ export const teamContent = {
         role: "Head of Training",
         meta: "BA Marketing · Year 2",
         bio:
-          "Designs the practice system—drills, cases, and debriefs. Case Strategist for Manchester Case Club; placed 2nd at NIBS Toronto and International Marketing Week Kolding. Course representative; focused on clear standards and calm sessions.",
+          "Designs the practice system—drills, cases, and debriefs. Case Strategist for Manchester Case Club; Silver Medal at NIBS Toronto and Gold Medal at International Marketing Week Kolding. Course representative; focused on clear standards and calm sessions.",
         linkedinHref: "#",
-        photoSrc: "/team/nancy-foxall@2x.jpeg",
+        photoSrc: "/team/nancy-foxall@2x.png",
         competitions: [
           { name: "RICCB", logoSrc: "/competitions/riccb.webp" },
           { name: "International Marketing", logoSrc: "/competitions/marketing-week.png" },
@@ -84,7 +90,7 @@ export const teamContent = {
         bio:
           "Keeps the club running smoothly—logistics, scheduling, and the small systems that make training consistent. Strong team communicator with a feedback-first mindset.",
         linkedinHref: "#",
-        photoSrc: "/team/jonathan-miller@2x.jpeg",
+        photoSrc: "/team/jonathan-miller@2x.png",
         experience: [
           { name: "Oracle", logoSrc: "/companies/oracle.png" }
         ],
@@ -93,6 +99,20 @@ export const teamContent = {
           { name: "International Marketing", logoSrc: "/competitions/marketing-week.png" },
           { name: "NIBS", logoSrc: "/competitions/nibs.jpg" },
           { name: "ROCA", logoSrc: "/competitions/roca.png" }
+        ]
+      },
+      {
+        name: "Rachel Jordan",
+        role: "Strategy",
+        meta: "BA (Hons) Business Management · Year 2",
+        bio:
+          "Supports people, onboarding, and a fair, professional club culture. Case analyst with international competition experience—focused on clear communication, roles, and how teams work under pressure.",
+        linkedinHref: "#",
+        photoSrc: "/team/rachel-jordan@2x.png",
+        competitions: [
+          { name: "BBU", logoSrc: "/competitions/bbu.png" },
+          { name: "ROCA", logoSrc: "/competitions/roca.png" },
+          { name: "International Business Week", logoSrc: "/competitions/marketing-week.png" }
         ]
       }
     ] satisfies TeamMember[]

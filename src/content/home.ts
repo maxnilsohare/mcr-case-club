@@ -6,7 +6,7 @@ export const homeContent = {
       "Consulting case prep, competitions, and structured problem-solving for ambitious students.",
     proof: [
       { text: "ROCA Finalist" },
-      { text: "NIBS 2nd Place" },
+      { text: "NIBS Silver Medal" },
       { text: "Best Speaker — Freya Lambert" }
     ]
   },

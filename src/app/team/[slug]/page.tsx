@@ -116,7 +116,10 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                     alt={profile.name}
                     fill
                     sizes="(min-width: 1024px) 340px, 88vw"
-                    className="object-cover object-center"
+                    className={cn(
+                      "object-cover",
+                      profile.imageCoverClassName ?? "object-center"
+                    )}
                     priority
                   />
                 </div>
@@ -295,7 +298,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
         </div>
       </Section>
 
-      <Section title="Competition record" intro="Recent environments where she’s competed and trained.">
+      <Section title="Competition record" intro="Recent environments where they’ve competed and trained.">
         <div className="grid gap-4 sm:grid-cols-2">
           {profile.competitions.map((c) => {
             const matches = c.photoMatch.map((m) => m.toLowerCase());
@@ -307,19 +310,63 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
               })
               .slice(0, 6);
 
+            const hasMeta = Boolean(
+              c.shortLabel || c.logoSrc || c.result || c.location || c.date
+            );
+
             return (
             <div
               key={c.name}
               className="overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-[0_1px_0_rgba(15,23,42,0.04)]"
             >
-              <div className="px-5 py-4">
-                <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
-                  Competition
-                </p>
-                <p className="mt-2 text-sm font-medium leading-snug text-ink-950">
-                  {c.name}
-                </p>
-              </div>
+              {hasMeta ? (
+                <div className="flex items-start gap-3 px-5 py-4">
+                  {c.logoSrc ? (
+                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-ink-200/70 bg-white">
+                      <Image
+                        src={c.logoSrc}
+                        alt={`${c.name} logo`}
+                        fill
+                        sizes="48px"
+                        className="object-contain p-1.5"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-ink-200/70 bg-paper-50 text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.08em] text-ink-500"
+                      aria-hidden
+                    >
+                      {(c.shortLabel ?? c.name).slice(0, 3)}
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[0.62rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                      {c.shortLabel ?? c.name}
+                    </p>
+                    <p className="mt-0.5 text-[0.93rem] font-semibold leading-snug text-ink-950 sm:text-sm">
+                      {c.result ?? c.name}
+                    </p>
+                    {c.location ? (
+                      <p className="mt-0.5 text-[0.8125rem] leading-snug text-ink-600 sm:text-sm">
+                        {c.location}
+                      </p>
+                    ) : null}
+                    <p className="sr-only">{c.name}</p>
+                  </div>
+                  {c.date ? (
+                    <p className="shrink-0 pt-0.5 text-[0.65rem] font-medium tabular-nums text-ink-500">
+                      {c.date}
+                    </p>
+                  ) : null}
+                </div>
+              ) : (
+                <div className="px-5 py-4">
+                  <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                    Competition
+                  </p>
+                  <p className="mt-2 text-sm font-medium leading-snug text-ink-950">{c.name}</p>
+                </div>
+              )}
 
               {photos.length > 0 ? (
                 <div className="border-t border-ink-200/60 bg-paper-100/40 p-4">
@@ -348,6 +395,75 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
           })}
         </div>
       </Section>
+
+      {profile.bestResult ? (
+        <Section
+          title="Proudest moment"
+          intro="A standout result that captures momentum when it mattered most."
+        >
+          <div className="max-w-2xl rounded-2xl border border-ink-200/80 bg-white px-6 py-5 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+            <p className="text-sm leading-relaxed text-ink-800">{profile.bestResult}</p>
+          </div>
+        </Section>
+      ) : null}
+
+      {profile.compIdentityBestIn && profile.compIdentityTeamValue ? (
+        <Section title="Comp identity" intro="A concise read on where this player adds the most value.">
+          <div className="max-w-2xl space-y-4 rounded-2xl border border-ink-200/80 bg-white px-6 py-5 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+            <div>
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                Best in
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-800">{profile.compIdentityBestIn}</p>
+            </div>
+            <div className="h-px w-full bg-ink-200/70" />
+            <div>
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                Team value
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-800">{profile.compIdentityTeamValue}</p>
+            </div>
+          </div>
+        </Section>
+      ) : null}
+
+      {profile.relevantExperience && profile.relevantExperience.length > 0 ? (
+        <Section title="Relevant experience" intro="Roles and commitments that shape how they show up in competition.">
+          <div className="max-w-2xl rounded-2xl border border-ink-200/80 bg-white px-6 py-5 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+            <ul className="list-inside list-disc space-y-2 text-sm leading-relaxed text-ink-800">
+              {profile.relevantExperience.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ) : null}
+
+      {profile.whatCompsHaveDone || profile.whyJoined ? (
+        <Section title="Background" intro="Why they’re here—and what competitions have changed for them.">
+          <div className="max-w-2xl space-y-6 rounded-2xl border border-ink-200/80 bg-white px-6 py-5 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+            {profile.whatCompsHaveDone ? (
+              <div>
+                <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                  What competitions have done
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-800">{profile.whatCompsHaveDone}</p>
+              </div>
+            ) : null}
+            {profile.whatCompsHaveDone && profile.whyJoined ? (
+              <div className="h-px w-full bg-ink-200/70" />
+            ) : null}
+            {profile.whyJoined ? (
+              <div>
+                <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-ink-500">
+                  Why they joined the club
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-800">{profile.whyJoined}</p>
+              </div>
+            ) : null}
+          </div>
+        </Section>
+      ) : null}
 
       <Section title="Fun fact" intro="A small detail that makes the profile human.">
         <div className="max-w-2xl rounded-2xl border border-ink-200/80 bg-white px-6 py-5 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
